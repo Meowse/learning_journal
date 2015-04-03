@@ -25,3 +25,9 @@ class MyModel(Base):
     value = Column(Integer)
 
 Index('my_index', MyModel.name, unique=True, mysql_length=255)
+
+class Foo(Base):
+    __tablename__ = 'foos'
+    id = Column(Integer, primary_key=True)
+    weight = Column(Integer)
+    height = Column(Integer)
