@@ -1,3 +1,3 @@
-web: pserve development.ini --log-file -
+web: ./run
 
 
