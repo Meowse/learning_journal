@@ -10,7 +10,7 @@
 		<ul>
 		{% for entry in entries %}
 			<li>{{ entries.id }}
-				<a href="{{ request.route_url('detail', id=entry.id) }}">{{ entry.title|lower }}</a>
+				<a href="{{ request.route_url('detail', id=entry.id) }}">{{ entry.title }}</a>
 			</li>
 		{% endfor %}
 		</ul>
