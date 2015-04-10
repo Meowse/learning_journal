@@ -1,21 +1,73 @@
+from pyramid.httpexceptions import HTTPNotFound
+from pyramid.httpexceptions import HTTPFound
+
 from pyramid.response import Response
 from pyramid.view import view_config
-
 from sqlalchemy.exc import DBAPIError
 
 from .models import (
+    Session,
     DBSession,
     MyModel,
+	Entry
     )
 
+from .forms import EntryCreateForm
 
-@view_config(route_name='home', renderer='templates/mytemplate.pt')
-def my_view(request):
-    try:
-        one = DBSession.query(MyModel).filter(MyModel.name == 'one').first()
-    except DBAPIError:
-        return Response(conn_err_msg, content_type='text/plain', status_int=500)
-    return {'one': one, 'project': 'learning_journal'}
+@view_config(route_name='home', renderer='templates/list.jinja2')
+def index_page(request):
+    return { 'entries': Entry.all() }
+
+@view_config(route_name='detail', renderer='templates/detail.jinja2')
+def view(request):
+    entry_id = request.matchdict['id']
+    entry = Entry.by_id(entry_id)
+    if not entry:
+        return HTTPNotFound()
+    return { 'entry': entry }
+#	{
+#        'id': entry.id + 1,
+#        'title': entry.title,
+#        'body': entry.body
+#    }
+#    return "detail view for entry with id " + entry_id + " has value " + str(entry)
+
+@view_config(route_name='create', renderer='templates/edit.jinja2')
+def create(request):
+    entry = Entry()
+    form = EntryCreateForm(request.POST)
+    if request.method == 'POST' and form.validate():
+        form.populate_obj(entry)
+        session = Session()
+        session.add(entry)
+        session.commit()
+        #return HTTPFound(location=request.route_url('home'))
+        return HTTPFound(location=request.route_url('detail', id=entry.id))
+    return {'form': form, 'action': 'create'}
+
+@view_config(route_name='edit', renderer='templates/edit.jinja2')
+def update(request):
+    entry_id = request.matchdict['id']
+    entry = Entry.by_id(entry_id)
+    if not entry:
+        return HTTPNotFound()
+    form = EntryCreateForm(request.POST)
+    if request.method == 'GET':
+        form.title.data = entry.title
+        form.body.data = entry.body
+    if request.method == 'POST' and form.validate():
+        form.populate_obj(entry)
+        #return HTTPFound(location=request.route_url('home'))
+        return HTTPFound(location=request.route_url('detail', id=entry.id))
+    return { 'form': form, 'action': 'edit' }
+
+#@view_config(route_name='home', renderer='templates/mytemplate.pt')
+#def my_view(request):
+#    try:
+#        one = DBSession.query(MyModel).filter(MyModel.name == 'one').first()
+#    except DBAPIError:
+#        return Response(conn_err_msg, content_type='text/plain', status_int=500)
+#    return {'one': one, 'project': 'learning_journal'}
 
 
 conn_err_msg = """\
