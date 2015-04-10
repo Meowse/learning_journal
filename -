@@ -1,0 +1,86 @@
+Starting server in PID 8196.
+serving on http://127.0.0.1:80
+Starting server in PID 9976.
+serving on http://127.0.0.1:80
+2015-04-10 01:35:00,457 INFO  [sqlalchemy.engine.base.Engine][Dummy-1] SELECT CAST('test plain returns' AS VARCHAR(60)) AS anon_1
+2015-04-10 01:35:00,459 INFO  [sqlalchemy.engine.base.Engine][Dummy-1] ()
+2015-04-10 01:35:00,460 INFO  [sqlalchemy.engine.base.Engine][Dummy-1] SELECT CAST('test unicode returns' AS VARCHAR(60)) AS anon_1
+2015-04-10 01:35:00,460 INFO  [sqlalchemy.engine.base.Engine][Dummy-1] ()
+2015-04-10 01:35:00,463 INFO  [sqlalchemy.engine.base.Engine][Dummy-1] BEGIN (implicit)
+2015-04-10 01:35:00,463 INFO  [sqlalchemy.engine.base.Engine][Dummy-1] SELECT entries.id AS entries_id, entries.title AS entries_title, entries.body AS entries_body, entries.created AS entries_created, entries.edited AS entries_edited 
+FROM entries 
+WHERE entries.id = ?
+2015-04-10 01:35:00,464 INFO  [sqlalchemy.engine.base.Engine][Dummy-1] (u'5',)
+2015-04-10 01:35:00,480 INFO  [sqlalchemy.engine.base.Engine][Dummy-1] ROLLBACK
+2015-04-10 01:35:01,196 INFO  [sqlalchemy.engine.base.Engine][Dummy-3] BEGIN (implicit)
+2015-04-10 01:35:01,210 INFO  [sqlalchemy.engine.base.Engine][Dummy-3] SELECT entries.id AS entries_id, entries.title AS entries_title, entries.body AS entries_body, entries.created AS entries_created, entries.edited AS entries_edited 
+FROM entries 
+WHERE entries.id = ?
+2015-04-10 01:35:01,210 INFO  [sqlalchemy.engine.base.Engine][Dummy-3] (u'5',)
+2015-04-10 01:35:01,210 INFO  [sqlalchemy.engine.base.Engine][Dummy-3] ROLLBACK
+2015-04-10 01:35:01,892 INFO  [sqlalchemy.engine.base.Engine][Dummy-4] BEGIN (implicit)
+2015-04-10 01:35:01,892 INFO  [sqlalchemy.engine.base.Engine][Dummy-4] SELECT entries.id AS entries_id, entries.title AS entries_title, entries.body AS entries_body, entries.created AS entries_created, entries.edited AS entries_edited 
+FROM entries 
+WHERE entries.id = ?
+2015-04-10 01:35:01,892 INFO  [sqlalchemy.engine.base.Engine][Dummy-4] (u'5',)
+2015-04-10 01:35:01,892 INFO  [sqlalchemy.engine.base.Engine][Dummy-4] ROLLBACK
+2015-04-10 01:35:03,381 INFO  [sqlalchemy.engine.base.Engine][Dummy-2] BEGIN (implicit)
+2015-04-10 01:35:03,382 INFO  [sqlalchemy.engine.base.Engine][Dummy-2] SELECT entries.id AS entries_id, entries.title AS entries_title, entries.body AS entries_body, entries.created AS entries_created, entries.edited AS entries_edited 
+FROM entries 
+WHERE entries.id = ?
+2015-04-10 01:35:03,382 INFO  [sqlalchemy.engine.base.Engine][Dummy-2] (u'5',)
+2015-04-10 01:35:03,385 INFO  [sqlalchemy.engine.base.Engine][Dummy-2] COMMIT
+2015-04-10 01:35:03,394 INFO  [sqlalchemy.engine.base.Engine][Dummy-4] BEGIN (implicit)
+2015-04-10 01:35:03,394 INFO  [sqlalchemy.engine.base.Engine][Dummy-4] SELECT entries.id AS entries_id, entries.title AS entries_title, entries.body AS entries_body, entries.created AS entries_created, entries.edited AS entries_edited 
+FROM entries 
+WHERE entries.id = ?
+2015-04-10 01:35:03,394 INFO  [sqlalchemy.engine.base.Engine][Dummy-4] (u'5',)
+2015-04-10 01:35:03,403 INFO  [sqlalchemy.engine.base.Engine][Dummy-4] ROLLBACK
+2015-04-10 01:35:04,661 INFO  [sqlalchemy.engine.base.Engine][Dummy-3] BEGIN (implicit)
+2015-04-10 01:35:04,661 INFO  [sqlalchemy.engine.base.Engine][Dummy-3] SELECT entries.id AS entries_id, entries.title AS entries_title, entries.body AS entries_body, entries.created AS entries_created, entries.edited AS entries_edited 
+FROM entries 
+WHERE entries.id = ?
+2015-04-10 01:35:04,661 INFO  [sqlalchemy.engine.base.Engine][Dummy-3] (u'5',)
+2015-04-10 01:35:04,664 INFO  [sqlalchemy.engine.base.Engine][Dummy-3] ROLLBACK
+Starting server in PID 4020.
+serving on http://127.0.0.1:80
+2015-04-10 01:35:18,779 INFO  [sqlalchemy.engine.base.Engine][Dummy-1] SELECT CAST('test plain returns' AS VARCHAR(60)) AS anon_1
+2015-04-10 01:35:18,779 INFO  [sqlalchemy.engine.base.Engine][Dummy-1] ()
+2015-04-10 01:35:18,780 INFO  [sqlalchemy.engine.base.Engine][Dummy-1] SELECT CAST('test unicode returns' AS VARCHAR(60)) AS anon_1
+2015-04-10 01:35:18,780 INFO  [sqlalchemy.engine.base.Engine][Dummy-1] ()
+2015-04-10 01:35:18,782 INFO  [sqlalchemy.engine.base.Engine][Dummy-1] BEGIN (implicit)
+2015-04-10 01:35:18,786 INFO  [sqlalchemy.engine.base.Engine][Dummy-1] SELECT entries.id AS entries_id, entries.title AS entries_title, entries.body AS entries_body, entries.created AS entries_created, entries.edited AS entries_edited 
+FROM entries 
+WHERE entries.id = ?
+2015-04-10 01:35:18,786 INFO  [sqlalchemy.engine.base.Engine][Dummy-1] (u'5',)
+2015-04-10 01:35:18,808 INFO  [sqlalchemy.engine.base.Engine][Dummy-1] ROLLBACK
+2015-04-10 01:35:20,717 INFO  [sqlalchemy.engine.base.Engine][Dummy-3] BEGIN (implicit)
+2015-04-10 01:35:20,719 INFO  [sqlalchemy.engine.base.Engine][Dummy-3] SELECT entries.id AS entries_id, entries.title AS entries_title, entries.body AS entries_body, entries.created AS entries_created, entries.edited AS entries_edited 
+FROM entries 
+WHERE entries.id = ?
+2015-04-10 01:35:20,719 INFO  [sqlalchemy.engine.base.Engine][Dummy-3] (u'5',)
+2015-04-10 01:35:20,720 INFO  [sqlalchemy.engine.base.Engine][Dummy-3] COMMIT
+2015-04-10 01:35:20,726 INFO  [sqlalchemy.engine.base.Engine][Dummy-1] BEGIN (implicit)
+2015-04-10 01:35:20,727 INFO  [sqlalchemy.engine.base.Engine][Dummy-1] SELECT entries.id AS entries_id, entries.title AS entries_title, entries.body AS entries_body, entries.created AS entries_created, entries.edited AS entries_edited 
+FROM entries 
+WHERE entries.id = ?
+2015-04-10 01:35:20,727 INFO  [sqlalchemy.engine.base.Engine][Dummy-1] (u'5',)
+2015-04-10 01:35:20,736 INFO  [sqlalchemy.engine.base.Engine][Dummy-1] ROLLBACK
+2015-04-10 01:35:23,500 INFO  [sqlalchemy.engine.base.Engine][Dummy-2] BEGIN (implicit)
+2015-04-10 01:35:23,502 INFO  [sqlalchemy.engine.base.Engine][Dummy-2] SELECT entries.id AS entries_id, entries.title AS entries_title, entries.body AS entries_body, entries.created AS entries_created, entries.edited AS entries_edited 
+FROM entries 
+WHERE entries.id = ?
+2015-04-10 01:35:23,502 INFO  [sqlalchemy.engine.base.Engine][Dummy-2] (u'5',)
+2015-04-10 01:35:23,505 INFO  [sqlalchemy.engine.base.Engine][Dummy-2] ROLLBACK
+2015-04-10 01:35:24,815 INFO  [sqlalchemy.engine.base.Engine][Dummy-4] BEGIN (implicit)
+2015-04-10 01:35:24,815 INFO  [sqlalchemy.engine.base.Engine][Dummy-4] SELECT entries.id AS entries_id, entries.title AS entries_title, entries.body AS entries_body, entries.created AS entries_created, entries.edited AS entries_edited 
+FROM entries 
+WHERE entries.id = ?
+2015-04-10 01:35:24,815 INFO  [sqlalchemy.engine.base.Engine][Dummy-4] (u'5',)
+2015-04-10 01:35:24,818 INFO  [sqlalchemy.engine.base.Engine][Dummy-4] COMMIT
+2015-04-10 01:35:24,822 INFO  [sqlalchemy.engine.base.Engine][Dummy-3] BEGIN (implicit)
+2015-04-10 01:35:24,823 INFO  [sqlalchemy.engine.base.Engine][Dummy-3] SELECT entries.id AS entries_id, entries.title AS entries_title, entries.body AS entries_body, entries.created AS entries_created, entries.edited AS entries_edited 
+FROM entries 
+WHERE entries.id = ?
+2015-04-10 01:35:24,823 INFO  [sqlalchemy.engine.base.Engine][Dummy-3] (u'5',)
+2015-04-10 01:35:24,825 INFO  [sqlalchemy.engine.base.Engine][Dummy-3] ROLLBACK
