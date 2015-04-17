@@ -1,7 +1,7 @@
 {% extends "layout.jinja2" %}
 
-{% block title%}
-	Some Entries
+{% block title %}
+	{{ entries|length }} Entries
 {% endblock %}
 
 {% block body %}
@@ -9,7 +9,7 @@
 		<h1>Journal Entries:</h1>
 		<ul>
 		{% for entry in entries %}
-			<li>{{ entries.id }}
+			<li>Entry #{{ entry.id }}:
 				<a href="{{ request.route_url('detail', id=entry.id) }}">{{ entry.title }}</a>
 			</li>
 		{% endfor %}

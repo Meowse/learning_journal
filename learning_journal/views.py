@@ -15,11 +15,11 @@ from .models import (
 from .forms import EntryCreateForm
 
 @view_config(route_name='home', renderer='templates/list.jinja2')
-def index_page(request):
+def show_list_of_entries(request):
     return { 'entries': Entry.all() }
 
 @view_config(route_name='detail', renderer='templates/detail.jinja2')
-def view(request):
+def show_entry(request):
     entry_id = request.matchdict['id']
     entry = Entry.by_id(entry_id)
     if not entry:
@@ -33,7 +33,7 @@ def view(request):
 #    return "detail view for entry with id " + entry_id + " has value " + str(entry)
 
 @view_config(route_name='create', renderer='templates/edit.jinja2')
-def create(request):
+def create_entry(request):
     entry = Entry()
     form = EntryCreateForm(request.POST)
     if request.method == 'POST' and form.validate():
@@ -46,15 +46,15 @@ def create(request):
     return {'form': form, 'action': 'create'}
 
 @view_config(route_name='edit', renderer='templates/edit.jinja2')
-def update(request):
+def update_entry(request):
     entry_id = request.matchdict['id']
     entry = Entry.by_id(entry_id)
     if not entry:
         return HTTPNotFound()
-    form = EntryCreateForm(request.POST)
-    if request.method == 'GET':
-        form.title.data = entry.title
-        form.body.data = entry.body
+    form = EntryCreateForm(request.POST, obj=entry)
+#    if request.method == 'GET':
+#        form.title.data = entry.title
+#        form.body.data = entry.body
     if request.method == 'POST' and form.validate():
         form.populate_obj(entry)
         #return HTTPFound(location=request.route_url('home'))
