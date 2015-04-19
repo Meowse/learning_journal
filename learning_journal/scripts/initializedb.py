@@ -17,6 +17,8 @@ from ..models import (
     Base,
     )
 
+from cryptacular.bcrypt import BCRYPTPasswordManager as Manager
+from ..models import User
 
 def usage(argv):
     cmd = os.path.basename(argv[0])
@@ -40,3 +42,9 @@ def main(argv=sys.argv):
 #    with transaction.manager:
 #        model = MyModel(name='newTwo', value=1)
 #        DBSession.add(model)
+    with transaction.manager:
+        manager = Manager()
+        hashed_password = manager.encode(u'admin')
+        admin = User(name=u'admin', hashed_password=hashed_password)
+        DBSession.add(admin)
+

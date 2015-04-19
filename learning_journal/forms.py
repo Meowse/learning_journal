@@ -1,5 +1,6 @@
 from wtforms import (
     Form,
+    PasswordField,
     TextField,
     TextAreaField,
     validators,
@@ -18,4 +19,12 @@ class EntryCreateForm(Form):
         'Entry body',
         [validators.Length(min=1)],
         filters=[strip_filter]
+    )
+
+class LoginForm(Form):
+    username = TextField(
+        'Username', [validators.Length(min=1, max=255)]
+    )
+    password = PasswordField(
+        'Password', [validators.Length(min=1, max=255)]
     )

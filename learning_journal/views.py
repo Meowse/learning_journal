@@ -9,14 +9,23 @@ from .models import (
     Session,
     DBSession,
     MyModel,
-	Entry
+	Entry,
+	User
     )
 
 from .forms import EntryCreateForm
 
+from pyramid.security import forget, remember
+from .forms import LoginForm
+
+from pyramid.security import authenticated_userid
+
 @view_config(route_name='home', renderer='templates/list.jinja2')
 def show_list_of_entries(request):
-    return { 'entries': Entry.all() }
+    form = None
+    if not authenticated_userid(request):
+        form = LoginForm()
+    return {'entries': Entry.all(), 'login_form': form}
 
 @view_config(route_name='detail', renderer='templates/detail.jinja2')
 def show_entry(request):
@@ -32,7 +41,7 @@ def show_entry(request):
 #    }
 #    return "detail view for entry with id " + entry_id + " has value " + str(entry)
 
-@view_config(route_name='create', renderer='templates/edit.jinja2')
+@view_config(route_name='create', renderer='templates/edit.jinja2', permission='create')
 def create_entry(request):
     entry = Entry()
     form = EntryCreateForm(request.POST)
@@ -45,7 +54,7 @@ def create_entry(request):
         return HTTPFound(location=request.route_url('detail', id=entry.id))
     return {'form': form, 'action': 'create'}
 
-@view_config(route_name='edit', renderer='templates/edit.jinja2')
+@view_config(route_name='edit', renderer='templates/edit.jinja2', permission='edit')
 def update_entry(request):
     entry_id = request.matchdict['id']
     entry = Entry.by_id(entry_id)
@@ -69,20 +78,18 @@ def update_entry(request):
 #        return Response(conn_err_msg, content_type='text/plain', status_int=500)
 #    return {'one': one, 'project': 'learning_journal'}
 
-
-conn_err_msg = """\
-Pyramid is having a problem using your SQL database.  The problem
-might be caused by one of the following things:
-
-1.  You may need to run the "initialize_learning_journal_db" script
-    to initialize your database tables.  Check your virtual
-    environment's "bin" directory for this script and try to run it.
-
-2.  Your database server may not be running.  Check that the
-    database server referred to by the "sqlalchemy.url" setting in
-    your "development.ini" file is running.
-
-After you fix the problem, please restart the Pyramid application to
-try it again.
-"""
+@view_config(route_name='login', renderer='string', request_method='POST')
+def sign_in(request):
+    login_form = None
+    if request.method == 'POST':
+        login_form = LoginForm(request.POST)
+    if login_form and login_form.validate():
+        user = User.by_name(login_form.username.data)
+        if user and user.has_password(login_form.password.data):
+            headers = remember(request, user.name)
+        else:
+            headers = forget(request)
+    else:
+        headers = forget(request)
+    return HTTPFound(location=request.route_url('home'), headers=headers)
 
